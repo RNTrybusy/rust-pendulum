@@ -110,6 +110,8 @@ impl Pendulum {
 // It handles the window events and have the objects that we want to draw and the logic.
 struct MyWindowHandler {
     p: Pendulum,
+    p2: Pendulum,
+    p3: Pendulum,
 }
 
 impl WindowHandler for MyWindowHandler {
@@ -119,6 +121,12 @@ impl WindowHandler for MyWindowHandler {
 
         self.p.update();
         self.p.draw(graphics);
+
+        self.p2.update();
+        self.p2.draw(graphics);
+
+        self.p3.update();
+        self.p3.draw(graphics);
 
         // Draw the frame.
         helper.request_redraw();
@@ -130,7 +138,11 @@ fn main() {
     let window = Window::new_centered("RNTrybusy - Pendulum", (800, 600))
     .expect("Erro ao criar a janela");
 
-    let win = MyWindowHandler { p: Pendulum::new(400.0, 0.0, 200.0) };
+    let win = MyWindowHandler { 
+        p: Pendulum::new(400.0, 0.0, 200.0), 
+        p2: Pendulum::new(400.0, 0.0, 300.0),
+        p3: Pendulum::new(400.0, 0.0, 400.0),
+    };
 
     window.run_loop(win);
 }
